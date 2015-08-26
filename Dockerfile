@@ -13,5 +13,7 @@ ADD ./fluent.conf /etc/td-agent/td-agent.conf
 RUN gem install fluent-plugin-kafka --no-ri --no-rdoc
 RUN mkdir -p /var/log/app
 
-CMD td-agent
+ENV FLUENTD_CONF="td-agent.conf"
+
+CMD td-agent -c /etc/td-agent/${FLUENTD_CONF}
 
